@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('./includes/head', { siteTitle: `
+    ${site.customConfig.friendsPageName} | ${themeConfig.siteName}` }) %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <% if (site.customConfig.openTwikoo) { %>
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+  <% } %>  
+  <% if (site.customConfig.openWaline) { %>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css" />
+  <% } %>
+</head>
+
+<body class="is-preload">
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <%- include('./includes/header') %>
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+        <div class="post-pagetitle">
+          <h2><%= site.customConfig.friendsPageName%></h2>
+        </div>
+
+        <div class="friendbox">
+          <% if (site.customConfig.friends) { %> <%
+            site.customConfig.friends.forEach(function(friend) { %>
+          <div class="friend-box friendblock" onclick="window.open('<%= friend.siteLink %>', '_blank')">
+            <% if (friend.PictureSource) { %>
+            <img class="friend-avatar" src="<%= friend.siteLogoLink %>" />
+            <% } else{%>
+            <img class="friend-avatar" src="<%= site.themeConfig.domain %>/post-images/<%= friend.siteLogoLink %>" />
+            <%};%>
+            <div class="flink-info">
+              <a><%= friend.siteName %></a>
+              <br />
+              <%= friend.description %>
+            </div>
+          </div>
+          <% }); %> <% } %>
+        </div>
+
+        <div class="page-count">
+          <% if (site.customConfig.openWalinePageCount) { %>
+          <!-- 访问量统计 -->
+          <!-- data-path 将作为查询条件 -->
+          阅读量:
+          <span class="waline-pageview-count" data-path="/post/friends/"></span>
+          <% } %> 
+          <% if (site.customConfig.openTwikooPageCount) { %>
+          <!--访问量统计 -->
+          <span id="/post/friends/" class="leancloud_visitors">
+            阅读量: <span id="twikoo_visitors">0</span>
+          </span>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- back to top -->
+      <button oneclik="topFunction()" id="BackToTop">TOP</button>
+
+      <div class="post-comment inner">
+        <div class="post-comment"><%- include('./includes/comment') %></div>
+      </div>
+    </div>   
+    <!-- Footer -->
+    <%- include('./includes/footer') %>
+  </div>
+
+  <!-- Scripts -->
+  <script src="<%= site.themeConfig.domain %>/media/scripts/jquery.min.js"></script>
+  <script src="<%= site.themeConfig.domain %>/media/scripts/browser.min.js"></script>
+  <script src="<%= site.themeConfig.domain %>/media/scripts/breakpoints.min.js"></script>
+  <script src="<%= site.themeConfig.domain %>/media/scripts/util.js"></script>
+  <script src="<%= site.themeConfig.domain %>/media/scripts/main.js"></script>
+  <script>
+    back_to_top();
+  </script>
+</body>
+
+</html>

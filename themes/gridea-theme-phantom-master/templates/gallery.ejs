@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./includes/head', { siteTitle:` ${site.customConfig.galleryPageName} | ${themeConfig.siteName} `}) %>	
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+  </head>
+
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="mainpage-wrapper">
+    <%- include('./includes/header') %>
+
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+
+          <div class="post-pagetitle">
+            <h2><%= site.customConfig.galleryPageName%></h2>
+          </div>
+
+          <section class="tiles">
+          <% if (site.customConfig.photos) { %> <%
+            site.customConfig.photos.forEach(function(photo) { %>
+              <article class="style1">
+                <div class="gallery-image-wrapper">
+                  <div class="gallery-image">
+                    <% if (photo.PictureSource) { %>
+                    <img  class="lazy" data-src="<%= photo.photolink %>" loading="lazy" />
+                    <% } else{%>
+                    <img  class="lazy" data-src="<%= site.themeConfig.domain %>/post-images/<%= photo.photolink %>" loading="lazy"/>
+                    <%};%> 
+                  </div>  
+                  <div class="image-title">
+                    <ul>
+                      <% if (photo.description) { %>
+                      <%= photo.description %>
+                      <% }%>
+                    </ul>
+                  </div>  
+                </div>
+              </article> 
+            <% }); %> <% } %>
+          </section>  
+
+        </div>
+      </div>
+
+      <!-- back to top -->
+      <button oneclik="topFunction()" id="BackToTop">
+        TOP
+      </button>
+
+      <%- include('./includes/footer') %>
+
+    <script src="<%= site.themeConfig.domain %>/media/scripts/jquery.min.js"></script>
+    <script src="<%= site.themeConfig.domain %>/media/scripts/browser.min.js"></script>
+    <script src="<%= site.themeConfig.domain %>/media/scripts/breakpoints.min.js"></script>
+    <script src="<%= site.themeConfig.domain %>/media/scripts/util.js"></script>
+    <script src="<%= site.themeConfig.domain %>/media/scripts/main.js"></script>
+    <script src="<%= site.themeConfig.domain %>/media/scripts/view-image.min.js"></script>
+    <script src="<%= site.themeConfig.domain %>/media/scripts/lazyload.min.js"></script>
+    <script>
+      back_to_top();
+      window.ViewImage && ViewImage.init('img');
+      var lazyLoadInstance = new LazyLoad({});
+      lazyLoadInstance.update();
+    </script>
+  </body>
+</html>

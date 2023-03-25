@@ -1,0 +1,28 @@
+{
+  "config": {
+    "branch": "main",
+    "cname": "nicrdream.com",
+    "domain": "https://https://github.com/nicedream18/nicedream18.github.io",
+    "email": "w1368194343@qq.com",
+    "enabledProxy": "direct",
+    "platform": "github",
+    "repository": "nicedream18.github.io",
+    "token": "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",
+    "username": "nicedream18"
+  },
+  "comment": {
+    "commentPlatform": "gitalk",
+    "disqusSetting": {
+      "api": "",
+      "apikey": "",
+      "shortname": ""
+    },
+    "gitalkSetting": {
+      "clientId": "",
+      "clientSecret": "",
+      "owner": "",
+      "repository": ""
+    },
+    "showComment": false
+  }
+}
